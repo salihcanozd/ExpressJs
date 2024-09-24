@@ -4,18 +4,19 @@ import parser from "body-parser";
 const app = express();
 const port = 3000;
 
+app.use(parser.urlencoded({extended:true}));
+
 app.get("/",(req,res)=>{
-    res.send("Hello Word");
-});
+    res.sendFile("/workspaces/ExpressJs/public/index.html")
+})
 
+app.post("/submit",(req,res)=>{
+    console.log(req.body);
 
-app.get("/about",(req,res)=>{
     res.send("About Page");
 });
 
-app.get("/contact",(req,res)=>{
-    res.send("Contact Page");
-});
+
 
 app.listen(port,()=>{
     console.log(`Server running on port ${port}`)
